@@ -27,7 +27,7 @@
             <el-upload
               ref="upload"
               class="avatar-uploader"
-              action="//127.0.0.1:7210/pa/file/uploadCover"
+              :action="uploadURL"
               :show-file-list="false"
               :on-success="handleAvatarSuccess"
               :before-upload="beforeAvatarUpload">
@@ -67,6 +67,7 @@ export default {
         coverPath: '',
         description: ''
       },
+      uploadURL: process.env.BASE_API + '/file/uploadCover',
       imageUrl: ''
     }
   },
