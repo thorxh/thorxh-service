@@ -12,6 +12,6 @@ import java.util.List;
  */
 public interface PhotoAlbumService extends CommonService<PhotoAlbum> {
 
-    List<PhotoAlbum> findByCreaterId(Integer createrId);
+    List<PhotoAlbum> get(Integer createrId);
 
 }

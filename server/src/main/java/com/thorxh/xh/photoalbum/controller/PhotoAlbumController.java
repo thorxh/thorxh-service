@@ -1,5 +1,7 @@
 package com.thorxh.xh.photoalbum.controller;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.thorxh.xh.photoalbum.entity.DO.PhotoAlbum;
 import com.thorxh.xh.photoalbum.entity.DTO.PhotoAlbumDTO;
 import com.thorxh.xh.photoalbum.entity.VO.PhotoAlbumVO;
@@ -31,16 +33,15 @@ public class PhotoAlbumController {
     }
 
     @GetMapping
-    public Result<List<PhotoAlbumVO>> getAll() {
-        List<PhotoAlbumVO> photoAlbumVOS = simpleConvert(photoAlbumService.getAll(), PhotoAlbumVO.class);
-        return Result.getOKResult(photoAlbumVOS);
-    }
-
-    @GetMapping("/findByCreaterId")
-    public Result<List<PhotoAlbumVO>> findByCreaterId(@RequestParam("createrId") Integer createrId) {
+    public Result<PageInfo<PhotoAlbumVO>> get(
+            @RequestParam(value = "createrId", required = false) Integer createrId,
+            @RequestParam(value = "pageNum", required = false, defaultValue = "0") Integer pageNum,
+            @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
+        PageHelper.startPage(pageNum, pageSize);
         List<PhotoAlbumVO> photoAlbumVOS =
-                simpleConvert(photoAlbumService.findByCreaterId(createrId), PhotoAlbumVO.class);
-        return Result.getOKResult(photoAlbumVOS);
+                simpleConvert(photoAlbumService.get(createrId), PhotoAlbumVO.class);
+        PageInfo<PhotoAlbumVO> pageInfo = new PageInfo<>(photoAlbumVOS);
+        return Result.getOKResult(pageInfo);
     }
 
     @PostMapping
@@ -50,7 +51,7 @@ public class PhotoAlbumController {
             log.error("failed to convert PhotoAlbumDTO{} to PhotoAlbum", photoAlbumDTO);
             return Result.getFailedResult();
         }
-//        photoAlbum.setCreaterId(0);
+        photoAlbum.setCreaterId(0);
         photoAlbumService.save(photoAlbum);
         return Result.getOKResult();
     }
