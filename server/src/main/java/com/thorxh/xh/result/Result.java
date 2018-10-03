@@ -31,9 +31,9 @@ public class Result<T> {
      */
     private T data;
 
-    private static final Result<Object> SERVER_ERROR_RESULT = new Result<>(ResponseCode.INTERNAL_SERVER_ERROR.code, "FAILED", false, null);
+    private static final Result SERVER_ERROR_RESULT = new Result<>(ResponseCode.INTERNAL_SERVER_ERROR.code, "FAILED", false, null);
 
-    private static final Result<Object> OK_RESULT = new Result<>(ResponseCode.OK.code, "OK", true, null);
+    private static final Result OK_RESULT = new Result<>(ResponseCode.OK.code, "OK", true, null);
 
     public void setResponseCode(ResponseCode responseCode) {
         this.responseCode = responseCode.code;
@@ -51,11 +51,13 @@ public class Result<T> {
         return result;
     }
 
+    @SuppressWarnings("unchecked")
     public static Result getOKResult() {
         return OK_RESULT;
     }
 
-    public static Result getFailedResult() {
+    @SuppressWarnings("unchecked")
+    public static <T> Result<T> getFailedResult() {
         return SERVER_ERROR_RESULT;
     }
 

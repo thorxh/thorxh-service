@@ -21,8 +21,9 @@ import static com.thorxh.xh.util.ObjectConverter.simpleConvert;
  * @author thorxh
  */
 @Log4j2
+@CrossOrigin
 @RestController
-@RequestMapping("/photoAlbum")
+@RequestMapping("/pa/photoAlbum")
 public class PhotoAlbumController {
 
     private final PhotoAlbumService photoAlbumService;
