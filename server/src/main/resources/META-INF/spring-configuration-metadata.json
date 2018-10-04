@@ -5,6 +5,13 @@
             "type": "java.lang.String"
         },
         {
+            "name": "qiniu.cover.domain",
+            "type": "java.lang.String"
+        },{
+            "name": "qiniu.cover.image.style",
+            "type": "java.lang.String"
+        },
+        {
             "name": "qiniu.accessKey",
             "type": "java.lang.String"
         },

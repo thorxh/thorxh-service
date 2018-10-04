@@ -1,6 +1,6 @@
 <!--suppress ALL -->
 <template>
-  <div class="app-container">
+  <div id="album-add">
     <el-row>
       <el-col :span="8"
               :offset="8">
@@ -77,7 +77,7 @@ export default {
      */
     createAlbum () {
       createAlbum(this.albumAddModel).then(response => {
-        if (response.data.success) {
+        if (response.success) {
           this.$message.success('创建相册成功')
           this.imageUrl = ''
           this.$refs.upload.clearFiles()
@@ -130,14 +130,14 @@ export default {
   .avatar-uploader-icon {
     font-size: 28px;
     color: #8c939d;
-    width: 178px;
-    height: 178px;
-    line-height: 178px;
+    width: 500px;
+    height: 200px;
+    line-height: 200px;
     text-align: center;
   }
   .avatar {
-    width: 178px;
-    height: 178px;
+    width: 500px;
+    height: 200px;
     display: block;
   }
 </style>

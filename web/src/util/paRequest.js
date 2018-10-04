@@ -8,4 +8,15 @@ const service = axios.create({
   }
 })
 
+// respone拦截器
+service.interceptors.response.use(
+  response => {
+    return response.data
+  },
+  error => {
+    console.log('err' + error)// for debug
+    return Promise.reject(error)
+  }
+)
+
 export default service

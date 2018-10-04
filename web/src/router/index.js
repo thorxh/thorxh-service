@@ -10,8 +10,20 @@ export default new VueRouter({
       component: () => import('@/views/photo_album/main'),
       children: [
         {
-          path: 'add',
+          path: 'album/add',
           component: () => import('@/views/photo_album/album/add')
+        },
+        {
+          path: 'album/list',
+          component: () => import('@/views/photo_album/album/list')
+        },
+        {
+          path: 'photo/add',
+          component: () => import('@/views/photo_album/photo/add')
+        },
+        {
+          path: 'photo/list',
+          component: () => import('@/views/photo_album/photo/list')
         }
       ]
     }
