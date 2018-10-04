@@ -1,7 +1,7 @@
 package com.thorxh.xh.photoalbum.mapper;
 
 import com.thorxh.xh.common.CommonMapper;
-import com.thorxh.xh.photoalbum.entity.DO.PhotoAlbum;
+import com.thorxh.xh.photoalbum.entity.DO.Album;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
@@ -13,8 +13,8 @@ import java.util.List;
  * @author thorxh
  */
 @Mapper
-public interface PhotoAlbumMapper extends CommonMapper<PhotoAlbum> {
+public interface AlbumMapper extends CommonMapper<Album> {
 
-    List<PhotoAlbum> findByCreaterId(@Param("createrId") Integer createrId);
+    List<Album> findByCreaterId(@Param("createrId") Integer createrId);
 
 }

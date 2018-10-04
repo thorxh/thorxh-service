@@ -12,7 +12,7 @@ import lombok.ToString;
 @Setter
 @Getter
 @ToString
-public class PhotoAlbumDTO {
+public class AlbumDTO {
 
     /**
      * 相册名称

@@ -1,7 +1,8 @@
-package com.thorxh.xh.photoalbum.entity.VO;
+package com.thorxh.xh.photoalbum.entity.DO;
 
 import lombok.*;
 
+import javax.persistence.*;
 import java.sql.Timestamp;
 
 /**
@@ -14,8 +15,11 @@ import java.sql.Timestamp;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class PhotoAlbumVO {
+@Table(name = "photo_album")
+public class Album {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     /**
      * 记录状态: 1 - 正常, 0 - 已删除
@@ -24,11 +28,13 @@ public class PhotoAlbumVO {
     /**
      * 记录创建时间
      */
-    private Long createTime;
+    @Column(name = "create_time")
+    private Timestamp createTime;
     /**
      * 记录修改时间
      */
-    private Long modifyTime;
+    @Column(name = "modify_time")
+    private Timestamp modifyTime;
     /**
      * 相册名称
      */
@@ -36,6 +42,7 @@ public class PhotoAlbumVO {
     /**
      * 相册封面路径
      */
+    @Column(name = "cover_path")
     private String coverPath;
     /**
      * 描述
@@ -44,6 +51,7 @@ public class PhotoAlbumVO {
     /**
      * 相册创建者 ID
      */
+    @Column(name = "creater_id")
     private Integer createrId;
 
 }

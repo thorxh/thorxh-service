@@ -2,10 +2,10 @@ package com.thorxh.xh.photoalbum.controller;
 
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
-import com.thorxh.xh.photoalbum.entity.DO.PhotoAlbum;
-import com.thorxh.xh.photoalbum.entity.DTO.PhotoAlbumDTO;
-import com.thorxh.xh.photoalbum.entity.VO.PhotoAlbumVO;
-import com.thorxh.xh.photoalbum.service.PhotoAlbumService;
+import com.thorxh.xh.photoalbum.entity.DO.Album;
+import com.thorxh.xh.photoalbum.entity.DTO.AlbumDTO;
+import com.thorxh.xh.photoalbum.entity.VO.AlbumVO;
+import com.thorxh.xh.photoalbum.service.AlbumService;
 import com.thorxh.xh.result.Result;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,8 +24,8 @@ import static com.thorxh.xh.util.ObjectConverter.simpleConvert;
 @Log4j2
 @CrossOrigin
 @RestController
-@RequestMapping("/pa/photoAlbum")
-public class PhotoAlbumController {
+@RequestMapping("/pa/album")
+public class AlbumController {
 
     @Value("${qiniu.cover.domain://cover.thorxh.site}")
     private String QINIU_COVER_DOMAIN;
@@ -33,35 +33,35 @@ public class PhotoAlbumController {
     @Value("${qiniu.cover.image.style:imageView2/1/w/200/h/200/q/75|imageslim}")
     private String QINIU_COVER_IMAGE_STYLE;
 
-    private final PhotoAlbumService photoAlbumService;
+    private final AlbumService albumService;
 
     @Autowired
-    public PhotoAlbumController(PhotoAlbumService photoAlbumService) {
-        this.photoAlbumService = photoAlbumService;
+    public AlbumController(AlbumService albumService) {
+        this.albumService = albumService;
     }
 
     @GetMapping
-    public Result<PageInfo<PhotoAlbumVO>> get(
+    public Result<PageInfo<AlbumVO>> get(
             @RequestParam(value = "createrId", required = false) Integer createrId,
             @RequestParam(value = "pageNum", required = false, defaultValue = "0") Integer pageNum,
             @RequestParam(value = "pageSize", required = false, defaultValue = "10") Integer pageSize) {
         PageHelper.startPage(pageNum, pageSize);
-        List<PhotoAlbumVO> photoAlbumVOS =
-                simpleConvert(photoAlbumService.get(createrId), PhotoAlbumVO.class);
-        photoAlbumVOS.forEach(photoAlbumVO -> photoAlbumVO.setCoverPath(jointImage(photoAlbumVO.getCoverPath())));
-        PageInfo<PhotoAlbumVO> pageInfo = new PageInfo<>(photoAlbumVOS);
+        List<AlbumVO> albumVOS =
+                simpleConvert(albumService.get(createrId), AlbumVO.class);
+        albumVOS.forEach(albumVO -> albumVO.setCoverPath(jointImage(albumVO.getCoverPath())));
+        PageInfo<AlbumVO> pageInfo = new PageInfo<>(albumVOS);
         return Result.getOKResult(pageInfo);
     }
 
     @PostMapping
-    public Result save(@RequestBody PhotoAlbumDTO photoAlbumDTO) {
-        PhotoAlbum photoAlbum = simpleConvert(photoAlbumDTO, PhotoAlbum.class);
-        if (photoAlbum == null) {
-            log.error("failed to convert PhotoAlbumDTO{} to PhotoAlbum", photoAlbumDTO);
+    public Result save(@RequestBody AlbumDTO albumDTO) {
+        Album album = simpleConvert(albumDTO, Album.class);
+        if (album == null) {
+            log.error("failed to convert AlbumDTO{} to Album", albumDTO);
             return Result.getFailedResult();
         }
-        photoAlbum.setCreaterId(0);
-        photoAlbumService.save(photoAlbum);
+        album.setCreaterId(0);
+        albumService.save(album);
         return Result.getOKResult();
     }
 
