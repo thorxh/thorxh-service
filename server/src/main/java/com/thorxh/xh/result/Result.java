@@ -52,7 +52,7 @@ public class Result<T> {
     }
 
     @SuppressWarnings("unchecked")
-    public static Result getOKResult() {
+    public static <T> Result<T> getOKResult() {
         return OK_RESULT;
     }
 

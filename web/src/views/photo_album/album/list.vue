@@ -1,15 +1,16 @@
 <template>
   <div id="album_list">
     <albumItem
-      v-for="(album, index) in albums"
-      :key="index"
-      :album="album">
+      v-for="album in albums"
+      :key="album.id"
+      :item="album"
+      @showPhotos="showPhotos"
+    >
     </albumItem>
   </div>
 </template>
 
 <script>
-
 import { query } from '@/api/album'
 import albumItem from '@/views/photo_album/album/item'
 
@@ -35,6 +36,14 @@ export default {
         }
       }).catch(() => {
         this.$message.error('查询失败，请稍后重试')
+      })
+    },
+    showPhotos (albumId) {
+      this.$router.push({
+        name: 'photo_list',
+        params: {
+          albumId: albumId
+        }
       })
     }
   }

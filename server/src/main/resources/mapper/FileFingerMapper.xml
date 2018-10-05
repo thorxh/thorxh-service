@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thorxh.xh.photoalbum.mapper.FileFingerMapper">
+    <resultMap id="baseResult" type="com.thorxh.xh.photoalbum.entity.DO.FileFinger">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="finger" jdbcType="CHAR" property="finger"/>
+        <result column="counter" jdbcType="INTEGER" property="counter"/>
+    </resultMap>
+
+    <select id="isFingerExists" resultType="java.lang.Integer">
+        SELECT EXISTS( SELECT 1 FROM `file_finger` WHERE finger = #{finger} )
+    </select>
+
+</mapper>

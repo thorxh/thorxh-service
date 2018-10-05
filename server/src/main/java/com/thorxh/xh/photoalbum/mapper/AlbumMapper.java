@@ -1,8 +1,7 @@
 package com.thorxh.xh.photoalbum.mapper;
 
-import com.thorxh.xh.common.CommonMapper;
+import com.thorxh.xh.common.CustomMapper;
 import com.thorxh.xh.photoalbum.entity.DO.Album;
-import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;
@@ -12,9 +11,10 @@ import java.util.List;
  *
  * @author thorxh
  */
-@Mapper
-public interface AlbumMapper extends CommonMapper<Album> {
+public interface AlbumMapper extends CustomMapper<Album> {
 
     List<Album> findByCreaterId(@Param("createrId") Integer createrId);
+
+    List<Album> selectAllOrderByCreateTime();
 
 }

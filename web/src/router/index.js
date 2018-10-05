@@ -11,18 +11,22 @@ export default new VueRouter({
       children: [
         {
           path: 'album/add',
+          name: 'album_add',
           component: () => import('@/views/photo_album/album/add')
         },
         {
           path: 'album/list',
+          name: 'album_list',
           component: () => import('@/views/photo_album/album/list')
         },
         {
           path: 'photo/add',
+          name: 'photo_add',
           component: () => import('@/views/photo_album/photo/add')
         },
         {
           path: 'photo/list',
+          name: 'photo_list',
           component: () => import('@/views/photo_album/photo/list')
         }
       ]

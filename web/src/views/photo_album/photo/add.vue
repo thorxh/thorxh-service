@@ -1,8 +1,10 @@
 <template>
   <div id="photo-add">
     <el-upload
-      action="https://jsonplaceholder.typicode.com/posts/"
+      :action="uploadURL"
       list-type="picture-card"
+      :data="param"
+      :before-upload="handleBeforeUpload"
       :on-preview="handlePictureCardPreview"
       :on-remove="handleRemove">
       <i class="el-icon-plus"></i>
@@ -14,19 +16,25 @@
 </template>
 
 <script>
+// import {  } from '@/api/photo'
+
 export default {
   data () {
     return {
       dialogImageUrl: '',
-      dialogVisible: false
+      dialogVisible: false,
+      uploadURL: process.env.BASE_API + '/photo',
+      param: {
+        albumId: 1
+      }
     }
   },
   methods: {
+    handleBeforeUpload (file) {
+    },
     handleRemove (file, fileList) {
-      console.log(file, fileList)
     },
     handlePictureCardPreview (file) {
-      console.log(file)
       this.dialogImageUrl = file.url
       this.dialogVisible = true
     }

@@ -6,7 +6,7 @@ import qs from 'qs'
  */
 export function query (params) {
   return request({
-    url: '/photoAlbum',
+    url: '/album',
     method: 'get',
     data: qs.stringify(params)
   })
@@ -17,7 +17,7 @@ export function query (params) {
  */
 export function createAlbum (model) {
   return request({
-    url: '/photoAlbum',
+    url: '/album',
     method: 'post',
     data: JSON.stringify(model)
   })

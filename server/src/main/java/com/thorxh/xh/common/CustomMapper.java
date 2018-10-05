@@ -10,6 +10,6 @@ import tk.mybatis.mapper.common.special.InsertListMapper;
  *
  * @author thorxh
  */
-public interface CommonMapper<T> extends BaseMapper<T>, ConditionMapper<T>, IdsMapper<T>, InsertListMapper<T> {
+public interface CustomMapper<T> extends BaseMapper<T>, ConditionMapper<T>, IdsMapper<T>, InsertListMapper<T> {
 
 }

@@ -1,22 +1,26 @@
 {
     "properties": [
         {
-            "name": "qiniu.cover.bucket",
-            "type": "java.lang.String"
-        },
-        {
-            "name": "qiniu.cover.domain",
-            "type": "java.lang.String"
-        },{
-            "name": "qiniu.cover.image.style",
-            "type": "java.lang.String"
-        },
-        {
             "name": "qiniu.accessKey",
             "type": "java.lang.String"
         },
         {
             "name": "qiniu.secretKey",
+            "type": "java.lang.String"
+        },{
+            "name": "qiniu.image.style",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "qiniu.image.bucket",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "qiniu.image.domain",
+            "type": "java.lang.String"
+        },
+        {
+            "name": "server.temp.dir",
             "type": "java.lang.String"
         }
     ]

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.thorxh.xh.photoalbum.mapper.PhotoMapper">
+    <resultMap id="baseResultMap" type="com.thorxh.xh.photoalbum.entity.DO.Photo">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="finger" jdbcType="CHAR" property="finger"/>
+        <result column="description" jdbcType="VARCHAR" property="description"/>
+        <result column="size" jdbcType="INTEGER" property="size"/>
+        <result column="image_width" jdbcType="VARCHAR" property="imageWidth"/>
+        <result column="image_height" jdbcType="VARCHAR" property="imageHeight"/>
+        <result column="latitude" jdbcType="VARCHAR" property="latitude"/>
+        <result column="longitude" jdbcType="VARCHAR" property="longitude"/>
+        <result column="shoot_time" jdbcType="TIMESTAMP" property="shootTime"/>
+        <result column="make" jdbcType="VARCHAR" property="make"/>
+        <result column="model" jdbcType="VARCHAR" property="model"/>
+        <result column="album_id" jdbcType="INTEGER" property="albumId"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+    </resultMap>
+
+    <select id="selectAllOrderByCreateTime" resultMap="baseResultMap">
+        SELECT id, status, create_time, modify_time, name, cover_path, description, creater_id
+        FROM album
+        ORDER BY create_time DESC
+    </select>
+
+    <select id="findByAlbumId" resultMap="baseResultMap">
+        SELECT id, status, create_time, modify_time,
+               name, finger, description, size, image_width, image_height, latitude, longitude, shoot_time, make, model,
+               album_id, user_id
+        FROM photo
+        WHERE album_id = #{albumId}
+        ORDER BY create_time DESC
+    </select>
+
+</mapper>

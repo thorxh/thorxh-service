@@ -11,6 +11,7 @@ public enum ResponseCode {
      * 请求成功
      */
     OK(200),
+    BAD_REQUEST(400),
     /**
      * 服务器无法根据客户端的请求找到资源
      */

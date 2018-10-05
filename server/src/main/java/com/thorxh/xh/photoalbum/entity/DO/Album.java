@@ -15,7 +15,7 @@ import java.sql.Timestamp;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "photo_album")
+@Table(name = "album")
 public class Album {
 
     @Id

@@ -12,14 +12,15 @@
         <result column="creater_id" jdbcType="INTEGER" property="createrId"/>
     </resultMap>
 
-    <select id="getAll" resultMap="baseResultMap">
+    <select id="selectAllOrderByCreateTime" resultMap="baseResultMap">
         SELECT id, status, create_time, modify_time, name, cover_path, description, creater_id
-        FROM photo_album
+        FROM album
+        ORDER BY create_time desc
     </select>
 
     <select id="findByCreaterId" resultMap="baseResultMap">
         SELECT id, status, create_time, modify_time, name, cover_path, description, creater_id
-        FROM photo_album
+        FROM album
         WHERE creater_id = #{createrId}
     </select>
 

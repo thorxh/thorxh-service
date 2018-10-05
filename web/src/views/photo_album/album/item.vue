@@ -3,13 +3,13 @@
     <el-row class="item_style">
       <el-col :span="10" :offset="7">
         <div class="album_name">
-          {{ album.name }}
+          {{ item.name }}
         </div>
         <div class="album_description">
-          {{ album.description }}
+          {{ item.description }}
         </div>
         <el-card :body-style="{ padding: '0px' }">
-          <img :src="album.coverPath" class="image" v-on:click="click">
+          <img :src="item.coverPath" class="image" v-on:click="showPhotos">
         </el-card>
         <div class="separator"></div>
       </el-col>
@@ -20,14 +20,14 @@
 <script>
 export default {
   props: {
-    album: {
+    item: {
       type: Object,
       required: true
     }
   },
   methods: {
-    click () {
-      this.$message.success('yes')
+    showPhotos () {
+      this.$emit('showPhotos', this.item.id)
     }
   }
 }

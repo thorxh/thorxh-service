@@ -1,5 +1,8 @@
 package com.thorxh.xh.common;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+
 import javax.annotation.Resource;
 import java.lang.reflect.Field;
 import java.lang.reflect.ParameterizedType;
@@ -12,8 +15,9 @@ import java.util.List;
  */
 public abstract class AbstractService<T> implements CommonService<T> {
 
-    @Resource
-    private CommonMapper<T> mapper;
+    @SuppressWarnings("SpringAutowiredFieldsWarningInspection")
+    @Autowired
+    private CustomMapper<T> customMapper;
 
     /**
      * 当前泛型真实的 Class
@@ -28,12 +32,12 @@ public abstract class AbstractService<T> implements CommonService<T> {
 
     @Override
     public List<T> getAll() {
-        return mapper.selectAll();
+        return customMapper.selectAll();
     }
 
     @Override
     public T findById(Integer id) {
-        return mapper.selectByPrimaryKey(id);
+        return customMapper.selectByPrimaryKey(id);
     }
 
     @Override
@@ -43,23 +47,23 @@ public abstract class AbstractService<T> implements CommonService<T> {
 
     @Override
     public void save(T model) {
-        mapper.insertSelective(model);
+        customMapper.insertSelective(model);
     }
 
     @Override
     public void save(List<T> models) {
-        int i = mapper.insertList(models);
+        int i = customMapper.insertList(models);
         System.out.println(i);
     }
 
     @Override
     public void delete(T model) {
-        mapper.delete(model);
+        customMapper.delete(model);
     }
 
     @Override
     public void deleteById(Integer id) {
-        mapper.deleteByPrimaryKey(id);
+        customMapper.deleteByPrimaryKey(id);
     }
 
     @Override
@@ -69,7 +73,7 @@ public abstract class AbstractService<T> implements CommonService<T> {
             Field field = this.modelClass.getDeclaredField(fieldName);
             field.setAccessible(true);
             field.set(model, value);
-            mapper.delete(model);
+            customMapper.delete(model);
         } catch (final ReflectiveOperationException e) {
             throw new Exception(e.getMessage(), e);
         }
@@ -77,12 +81,12 @@ public abstract class AbstractService<T> implements CommonService<T> {
 
     @Override
     public void deleteByIds(String ids) {
-        mapper.deleteByIds(ids);
+        customMapper.deleteByIds(ids);
     }
 
     @Override
     public void update(T model) {
-        mapper.updateByPrimaryKey(model);
+        customMapper.updateByPrimaryKey(model);
     }
 
 }
