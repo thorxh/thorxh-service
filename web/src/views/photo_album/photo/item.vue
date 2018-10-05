@@ -3,11 +3,7 @@
     <el-row class="item_style">
       <el-col :span="10" :offset="7">
         <el-card :body-style="{ padding: '0px' }">
-          <!--<viewer-->
-            <!--:options="options"-->
-          <!--&gt;-->
-            <img :src="item.imagePath + '?' + item.imageStyle" :data-source="item.imagePath" class="image">
-          <!--</viewer>-->
+          <img :src="item.imagePath + '?' + item.imageStyle" :data-source="item.imagePath" class="image">
         </el-card>
       </el-col>
     </el-row>
